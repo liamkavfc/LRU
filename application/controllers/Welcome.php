@@ -6,6 +6,7 @@ class Welcome extends CI_Controller {
 	public function __construct()
 	{
 			parent::__construct();
+			$this->load->library('session');
 			$this->load->model('items');
 	}
 
@@ -26,10 +27,23 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+
+		$this->view('welcome_message');
+
 	}
 
 	public function postList() {
-			$this->list->addToList($_POST['item']);
+			$this->items->addToList($_POST['item']);
+
+			$this->view('welcome_message');
+	}
+
+	public function view($page = 'welcome_message')
+	{
+		$list = (array) $this->items->getList();
+
+		$_SESSION['items'] = $list;
+
+		$this->load->view($page);
 	}
 }

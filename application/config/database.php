@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'Liams-MacBook-Pro.local',
+	'hostname' => 'localhost',
 	'username' => 'LRU_USER',
 	'password' => 'LRU_PASSWORD',
 	'database' => 'LRU',

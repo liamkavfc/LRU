@@ -28,7 +28,11 @@ class Items extends CI_Model
     */
     public function addToList($item) {
 
-      var_dump($this->getList());
+      $items = $this->getList();
+
+      if (count($items) == 10) {
+        $this->deleteItem();
+      };
 
       $data = array(
        'item' => $item ,
@@ -36,8 +40,6 @@ class Items extends CI_Model
       );
 
         $this->db->insert('items', $data);
-        $ap_name = $tables[0];
-        return $ap_name;
     }
 
     /* getList()
@@ -45,7 +47,18 @@ class Items extends CI_Model
     * gets list of items
     */
     public function getList() {
-      $result = $this->db->query('SELECT * from items;');
+      $result = $this->db->query("SELECT * FROM LRU.items ORDER BY time DESC;")->result_array();
+
       return $result;
+    }
+
+    /* deleteItem()
+    *
+    * delete last item
+    */
+    public function deleteItem() {
+        $table = $this->getList();
+        $this->db->where('time', $table[9]['time']);
+        $this->db->delete('items');
     }
 }
