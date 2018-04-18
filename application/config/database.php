@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'VM-dba39495-e052-4a03-8410-acb4fe466469',
 	'username' => 'LRU_USER',
 	'password' => 'LRU_PASSWORD',
 	'database' => 'LRU',
